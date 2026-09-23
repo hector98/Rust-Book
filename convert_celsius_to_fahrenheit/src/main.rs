@@ -22,7 +22,15 @@ fn main() {
         if op == 1 {
             let f_t_c: f64 = fahrenheit_to_celsius();
 
-            println!("{f_t_c}");
+            println!("Result: {f_t_c} °C");
+        } else if op == 2 {
+            let c_t_f: f64 = celsius_to_fahrenheit();
+
+            println!("Result: {c_t_f} °F");
+        } else {
+            println!("Bye Bye");
+
+            break;
         }
     }
 }
@@ -40,7 +48,25 @@ fn fahrenheit_to_celsius () -> f64 {
         Err(_) => 0.0,
     };
 
-    let celsius :f64 = (grados - 32.0) / 1.8
+    let celsius :f64 = (grados - 32.0) / 1.8;
 
-    return grados;
+    return celsius;
+}
+
+fn celsius_to_fahrenheit () -> f64 {
+    println!("Please write the Celsius grados!");
+
+    let mut grados = String::new();
+    io::stdin()
+        .read_line(&mut grados)
+        .expect("Failed to read line()");
+
+    let grados: f64 = match grados.trim().parse() {
+        Ok(num) => num,
+        Err(_) => 0.0,
+    };
+
+    let fahrenheit :f64 = (grados * 1.8) + 32.0;
+
+    return fahrenheit;
 }
