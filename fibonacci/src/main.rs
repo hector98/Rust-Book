@@ -17,5 +17,18 @@ fn main() {
         };
 
         println!("Your number is: {number}");
+
+        let mut ant: u64 = 0;
+        let mut res: u64 = 1;
+        let mut i: u32 = 0;
+
+        while res <= number{
+            print!("{ant}, ");
+            let aux: u64 = res;
+            res = ant + res;
+            ant = aux;
+            i += 1;
+        }
+        print!("{ant}... {i} iteractions\n")
     }
 }
