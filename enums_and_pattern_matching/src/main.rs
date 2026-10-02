@@ -1,3 +1,84 @@
+enum IpAddr {
+    V4(u8, u8, u8, u8),
+    V6(String),
+}
+
+enum Message {
+    Quit,
+    Move { x: i32, y: i32 },
+    Wrtie(String),
+    ChangeColor(i32, i32, i32),
+}
+
+//--> Definir metodos para enums <------- 
+impl Message {
+    fn call(&self) {
+        // method body would be defined here
+    }
+}
+
+//----> El Option enum <------------- 
+enum Option<T> {
+    None,
+    Some(T),
+}
+
+//-------------> La match construction del flujo de control <------- 
+//--------> Ejemplo con monedas EEUU <------------------- 
+enum Coin {
+    Penny,
+    Nickel,
+    Dime,
+    Quarter(UsState),
+}
+
+#[derive(Debug)]
+enum UsState {
+    Alabama,
+    Alaska,
+}
+
+
 fn main() {
-    println!("Hello, world!");
+    let home = IpAddr::V4(127, 0, 0, 1);
+
+    let loopback = IpAddr::V6(String::from("::1"));
+
+    //--> Uso de metodos en enums <------- 
+    let m = Message::Write(String::from("Hello"));
+    m.call();
+
+    //------> Ejemplos de Option valores <-------- 
+    let some_number = Some(5);
+    let some_char = Some('b');
+
+    let absent_number: Option<i32> = None;
+
+    //-----> El Option<T> matchpatron <----------- 
+    let five = Some(5);
+    let six = plus_one(five);
+    let none = plus_one(None);
+}
+
+fn value_in_cents(coin: Coin) -> u8 {
+    match coin {
+        Coin::Peny => {
+            println!("Lucky penny!");
+            1
+        } // No es necesario usar coma ',' aqui
+        Coin::Nickel => 5,
+        Coin::Dime => 10,
+        Coin::Quarter(state) => {
+            println!("Stste quarter from {stste:?}!");
+            25
+        }
+    }
+}
+
+//-----> El Option<T> matchpatron
+fn plus_one(x: Option<i32>) Option<i32> {
+    match x {
+        None => None,
+        Some(i) => Some(i + 1),
+    }
 }
