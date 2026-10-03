@@ -58,7 +58,36 @@ fn main() {
     let five = Some(5);
     let six = plus_one(five);
     let none = plus_one(None);
+
+    //---> Patrones comodin y el _marcador de posicion <-- 
+    let dice_roll = 9;
+    match dice_roll {
+        3 => add_fancy_hat(),
+        7 => remove_fancy_hat(),
+        other => move_player(other),
+    }
+
+    //---> Flujo de control conciso con if letylet..,else 
+    let config_max = Some (3u8);
+
+    //--> Con match <------------------------------
+    match config_max {
+        Some(max) => println!("The maximum is configured to be {max}"),
+        _ => (),
+    }
+
+    //---> Con if let <----------------- 
+    if let Some(max) = config_max {
+        println!("The maximun is configured to be {max}");
+    }
 }
+
+
+//--> Patrones comodin y el _marcador de posicion
+fn add_fancy_hat() {}
+fn remove_fancy_hat() {}
+fn move_player() {}
+
 
 fn value_in_cents(coin: Coin) -> u8 {
     match coin {
