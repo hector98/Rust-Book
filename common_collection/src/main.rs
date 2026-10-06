@@ -66,7 +66,7 @@ fn main() {
     let s = data.to_string();
 
     // The method also work on a literal directly:
-    let s = "initial contents".to_sting();
+    let s = "initial contents".to_string();
 
     // Actualizar un String 
     let mut s = String::from("foo"); // o "foo".to_string
@@ -76,6 +76,33 @@ fn main() {
     let s1 = String::from("Hello, ");
     let s2 = String::from("world!");
     let s3 = s1 + &s2; // Note s1 has been moved here and can no longer be used 
+
+    // Conctenar con la macro format!
+    let s1 = String::from("tic");
+    let s2 = String::from("tac");
+    let s3 = String::from("toe");
+
+    let s = format!("{s1}-{s2}-{s3}");
+
+    //--> Indexacion de Strings 
+    let hello = String::from("Hello");
+    // let h = hello[0]; --> Error.
+
+    //----> Cortar Cadenas <------------------------ 
+    let hello = "Здравствуйте";
+    let s = &hello[0..4];
+
+    //----> Iterar sobre Strings <----------------- 
+    //Con Char
+    for c in "Зд".chars() {
+        println!("{c}");
+    }
+
+    //Con bytes
+    for b in "Зд".bytes(){
+        println!("{b}");
+    }
+
 
 
 }
