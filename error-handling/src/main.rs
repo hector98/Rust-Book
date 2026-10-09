@@ -39,4 +39,13 @@ fn main() {
             }
         },
     };
+
+    //-------> Atajos para el panica en caso de error <----- 
+    let greeting_file = File::open("hello.txt").unwrap();
+
+    //---> Con expect <------------------------------ 
+    let greeting_file = File::opem("hello.txt")
+        .expect("hello.txt should be include in this project");
+
+    //-------------> Propagacion de errores <--------
 }
