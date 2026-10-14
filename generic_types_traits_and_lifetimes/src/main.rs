@@ -91,7 +91,19 @@ fn main() {
     let char_list = vec!['h', 'e', 'l', 'l', 'o'];
     
     let resutl = largest_generic(&char_list);
-    println!("The largest ")
+    println!("The largest ");
+
+    //--> Uso de Rasgos <----- 
+    let post = SocialPost {
+        username: String::from("Horse_ebooks"),
+        content: String::from(
+            "of course, as you probably already know, people",
+            ),
+            reply: false,
+            repost: false,
+    };
+
+    println!("1 new post: {}", post.summarize());
 }
 
 
@@ -106,6 +118,42 @@ fn largest_func(list: &[i32]) -> &i32 {
     }
 
     largest
+}
+
+
+//--> Definir el comportamiento compartido mediante rasgos <-- 
+//--> Un rasgo es similar a usar interfaces <----- 
+
+//--> Definir Rasgo <------- 
+pub trait Summary {
+    fn summarize(&self) -> String;
+}
+
+//--> Implementacion de rasgo en un tipo <--- 
+pub struct NewsArticle {
+    pub headline: String,
+    pub location: String,
+    pub author: String,
+    pub content: String,
+}
+
+impl Summary for NewsArticle {
+    fn summarize(&self) -> String {
+        format!("{}, by {} ({})", self.headline, self.author, self.location)
+    }
+}
+
+pub struct SocialPost {
+    pub username: String,
+    pub content: String,
+    pub reply: bool,
+    pub repost: bool,
+}
+
+impl Summary for SocialPost {
+    fn summarize(&self) -> String {
+        format!("{}: {}", self.username, self.content)
+    }
 }
 
 
