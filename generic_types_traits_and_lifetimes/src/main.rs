@@ -156,6 +156,42 @@ impl Summary for SocialPost {
     }
 }
 
+//--> Utilizar rasgos como parametros <----- 
+pub fn notify(item: &impl summary) {
+    println!("Breaking news! {}", item.summarize());
+}
+
+//--> Sintaxis ligada a rasgos <------- 
+pub fn notify<T: Summary>(item: &T) {
+    println!("Breaking news! {}", item.summarize());
+}
+
+//--> Multiples limites de ragos con sintaxis + <--- 
+pub fn notify(item:: &(impl Summary + Display)) {}
+
+pub fn notify<T: Summary + Display>(item: &T){}
+
+//----> Limites de ragos mas claros con clasula where <--- 
+fn some_function<T, U>(t: &T, u: &U) -> i32
+where
+    T: Display + Clone,
+    U: Clone + Debug,
+{}
+
+//----> Tipos de retorno que implementan rasgos <--- 
+fn returns_summarizable() -> impl Summary {
+    SocialPost {
+        username: String::from("horse_ebooks"),
+        content: String::from(
+            "of course, as you probably already know, people",
+            ),
+            reply: false,
+            repost: false,
+    }
+}
+
+//---> Uso limi
+
 
 //--> En  definicion de funciones <-------------------- 
 fn largest_i32(list: &[i32]) -> i32 {
