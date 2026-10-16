@@ -104,8 +104,36 @@ fn main() {
     };
 
     println!("1 new post: {}", post.summarize());
+
+
+    //-------------------------------------------------- 
+    //--> Validacion de referencias con tiempo de vida <-- 
+    //---------------------------------------------------- 
+
+    //----> Referencias colgantes <------------- 
+    //
+
+    //-----> Duracion generica de las funciones <--- 
+    let string1 = String::from("abcd");
+    let string2 = "xyz";
+
+    let result = longest(string1.as_str(), string2);
+    println!("The longest string is {result}");
 }
 
+fn longest(x: &str, y: &str) -> &str { // Error
+    if x.len() > y.len() { x } else { y }
+}
+
+//---> Sintaxis de tiempo de vida <------ 
+&i32         // a reference
+&'a i32      // a reference with an explicit lifetime
+&'a muit i32 // a mutable reference with an explicit liftime
+
+//--> En las firmas de funciones <---------- 
+fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
+    if x.len() > y.len() { x } else { y }
+}
 
 //--> usando una abstraccion para encontrar el numero mas grade <-- 
 fn largest_func(list: &[i32]) -> &i32 {
@@ -188,6 +216,7 @@ fn returns_summarizable() -> impl Summary {
             reply: false,
             repost: false,
     }
+
 }
 
 //---> Uso limi
