@@ -135,6 +135,11 @@ fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
     if x.len() > y.len() { x } else { y }
 }
 
+//--> En definicion de Estructuras <---------- 
+struct ImportantExcerpt<'a> {
+    part: &'a str,
+}
+
 //--> usando una abstraccion para encontrar el numero mas grade <-- 
 fn largest_func(list: &[i32]) -> &i32 {
     let mut largest = &list[0];
