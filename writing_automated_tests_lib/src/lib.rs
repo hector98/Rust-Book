@@ -20,11 +20,12 @@ mod tests {
         assert_eq!(result, 4);
     }
 
-    /*
+    
     #[test]
+    #[ignore]
     fn another() {
         panic!("Makje this test fail")
-    } */
+    }
 
     #[test]
     fn larger_can_hold_smaller() {
