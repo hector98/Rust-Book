@@ -44,6 +44,13 @@ struct Rectangle {
     height: u32,
 }
 
+//---> El Iterator rasgo y el metodo next <------ 
+pub trait Iterator {
+    type Item;
+
+    fn next(&mut self) -> Option<Self::Item>;
+}
+
 
 fn main() {
     let store = Inventory {
@@ -126,4 +133,23 @@ fn main() {
     });
 
     println!("{list:#?}, sorted in {num_sort_operations} operations");
+
+
+    ///////////////////////////////////////////////////////////////////////
+    //--> Procesamiento de una serie de elementos con iteradores <----
+    let v1 = vec![1, 2, 3];
+
+    let v1_iter = v1.iter();
+
+    for val1 in v1_iter {
+        println!("Got: {val1}");
+    }
+
+
+    //--> Metodos que generan otros iteradores <------ 
+    //--> Metodo map <--------------------------
+    let v1: Vec<i32> = vec![1, 2, 3];
+
+    v1.iter().map(|x| x + 1);
+
 }
